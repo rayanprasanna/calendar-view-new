@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion versions.compile_sdk
+    defaultConfig {
+        applicationId "com.kizitonwose.calendarviewsample"
+        minSdkVersion versions.min_sdk_sample
+        targetSdkVersion versions.target_sdk
+        versionCode versions.version_code
+        versionName versions.version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    androidExtensions {
+        experimental true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':library')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin_lang"
+    implementation "androidx.legacy:legacy-support-v4:$versions.androidx_legacy"
+    implementation "androidx.appcompat:appcompat:$versions.androidx_appcompat"
+    implementation "androidx.core:core-ktx:$versions.androidx_core_ktx"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+    implementation "androidx.cardview:cardview:$versions.cardview"
+    implementation "com.google.android.material:material:$versions.material_library"
+
+    testImplementation "junit:junit:$versions.junit"
+
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$versions.espresso" // RecyclerView actions.
+    androidTestImplementation "androidx.test:runner:$versions.androidx_test_runner"
+    androidTestImplementation "androidx.test:rules:$versions.androidx_test_rules"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidx_test_junit"
+}
